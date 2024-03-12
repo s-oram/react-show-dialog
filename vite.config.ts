@@ -3,8 +3,7 @@ import { join, resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-
-import { peerDependencies } from './package.json'
+import pkg from './package.json' assert { type: 'json' }
 
 export default defineConfig({
 	plugins: [
@@ -22,8 +21,10 @@ export default defineConfig({
 			},
 		},
 		rollupOptions: {
-			// Exclude peer dependencies from the bundle to reduce bundle size
-			external: [...Object.keys(peerDependencies)],
+			external: [
+				'react/jsx-runtime', // Required to prevent `react` from being included in build.
+				...Object.keys(pkg.peerDependencies),
+			],
 		},
 	},
 	test: {
