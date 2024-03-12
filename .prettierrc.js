@@ -25,6 +25,12 @@ export default {
 				useTabs: false,
 			},
 		},
+		{
+			files: ['**/*.md'],
+			options: {
+				useTabs: false,
+			},
+		},
 	],
 	plugins: [],
 }
