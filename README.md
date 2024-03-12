@@ -1,4 +1,4 @@
-# Show Dialog
+# React Show Dialog
 
 Application flows involving modal dialogs can be challenging to build well in
 React. This library is an attempt to change that.
@@ -12,12 +12,19 @@ next. However React code is best written in a declarative style, and in my
 experience it's non-obvious how to do this whilst keeping the code reusable and
 readable.
 
-## Using Show Dialog
+## Using
 
-First we need to write a modal dialog component:
+Using react-show-dialog is a three step process.
+
+### 1. Create your dialog component
+
+The dialog component is a typical React component. It must have a
+`onModalResult` property that is called to return the result value.
+
+The dialog component will close automatically after a result is returned.
 
 ```tsx
-import { type RequiredDialogProps } from '@s-oram/show-dialog'
+import { type RequiredDialogProps } from '@s-oram/react-show-dialog'
 
 export const ConfirmDialog = ({
   message,
@@ -33,12 +40,21 @@ export const ConfirmDialog = ({
 }
 ```
 
-Then we need to use the dialog:
+### 2. Activate the dialog with the `useShowDialog()` hook
+
+The `useShowDialog()` hook returns a `showDialog()` function that can be called
+to activate your dialog.
+
+The `showDialog()` function accepts three arguments.
+
+- The dialog React component created at step #1.
+- A callback function to handle to the modal result
+- A props object that will be provided to the dialog component.
 
 ```tsx
-import { useShowDialog } from '@s-oram/show-dialog'
+import { useShowDialog } from '@s-oram/react-show-dialog'
 import { ConfirmDialog } from './ConfirmDialog'
-import { deleteProjectAction } from './api'
+import { deleteProject } from './api'
 
 export const ProjectSettings ({ projectId }: { projectId: string }) => {
 
@@ -46,7 +62,7 @@ export const ProjectSettings ({ projectId }: { projectId: string }) => {
 
   const handleResult = (modalResult: string) => {
     if (modalResult === 'OK') {
-        deleteProjectAction()
+        deleteProject()
     }
   }
 
@@ -65,10 +81,13 @@ export const ProjectSettings ({ projectId }: { projectId: string }) => {
 }
 ```
 
-Finally we need to add the `<ShowDialogProvider/>` to our application:
+### 3. Add the `<ShowDialogProvider>` component to your application
+
+Finally we need to add the `<ShowDialogProvider/>` somewhere in the application
+component tree.
 
 ```tsx
-import { ShowDialogProvider } from '@s-oram/show-dialog'
+import { ShowDialogProvider } from '@s-oram/react-show-dialog'
 import { ProjectSettings } from './ProjectSettings'
 
 export default function App() {
