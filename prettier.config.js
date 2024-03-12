@@ -1,4 +1,4 @@
-/** @type {import("prettier").Options} */
+/** @type {import("prettier").Config} */
 export default {
 	arrowParens: 'avoid',
 	bracketSameLine: false,
