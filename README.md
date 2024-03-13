@@ -14,7 +14,9 @@ readable.
 
 ## Using
 
-Using react-show-dialog is a three step process.
+Using `react-show-dialog` is a three step process. See
+[react-show-dialog-examples](https://github.com/s-oram/react-show-dialog-examples)
+for a working example.
 
 ### 1. Create your dialog component
 
