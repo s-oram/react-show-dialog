@@ -1,16 +1,6 @@
 # React Show Dialog
 
-Application flows involving modal dialogs can be challenging to build well in
-React. This library is an attempt to change that.
-
-Modal dialogs are often shown in response to user interactions. For example: the
-user presses a "Delete project" button. We then show a "Are you sure?" dialog to
-confirm the user does in fact want to delete their project.
-
-This sequence is trivial to write in an imperative style. One thing leads to the
-next. However React code is best written in a declarative style, and in my
-experience it's non-obvious how to do this whilst keeping the code reusable and
-readable.
+A headless library to help build application flows involving modal dialogs.
 
 ## Using
 
@@ -22,8 +12,6 @@ for a working example.
 
 The dialog component is a typical React component. It must have a
 `onModalResult` property that is called to return the result value.
-
-The dialog component will close automatically after a result is returned.
 
 ```tsx
 import { type RequiredDialogProps } from '@s-oram/react-show-dialog'
@@ -47,18 +35,12 @@ export const ConfirmDialog = ({
 The `useShowDialog()` hook returns a `showDialog()` function that can be called
 to activate your dialog.
 
-The `showDialog()` function accepts three arguments.
-
-- The dialog React component created at step #1.
-- A callback function to handle to the modal result
-- A props object that will be provided to the dialog component.
-
 ```tsx
 import { useShowDialog } from '@s-oram/react-show-dialog'
 import { ConfirmDialog } from './ConfirmDialog'
 import { deleteProject } from './api'
 
-export const ProjectSettings ({ projectId }: { projectId: string }) => {
+export const ProjectSettings () => {
 
   const showDialog = useShowDialog()
 
@@ -73,7 +55,7 @@ export const ProjectSettings ({ projectId }: { projectId: string }) => {
       <h1>Project Settings</h1>
       <button
         onClick={() => {
-          showDialog(ConfirmDialog, handleResult, { message: 'Are you sure?'})
+          showDialog(ConfirmDialog, handleResult)
         }}
       >
         Delete project
@@ -104,5 +86,4 @@ export default function App() {
 ## Styling
 
 Show Dialog is a headless UI library. It works equally well with any styling
-solution. It will also work with prebuilt dialog components found in UI
-component libraries.
+solution and all component libraries.
