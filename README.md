@@ -93,3 +93,8 @@ export default function App() {
 
 Show Dialog is a headless UI library. It works equally well with any styling
 solution and all component libraries.
+
+## Other Projects
+
+- [lindesvard/pushmodal](https://github.com/lindesvard/pushmodal)
+- [renatorib/react-imp](https://github.com/renatorib/react-imp)
