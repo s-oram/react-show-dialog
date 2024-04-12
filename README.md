@@ -2,13 +2,19 @@
 
 A headless library to help build application flows involving modal dialogs.
 
-## Using
+## Installation
+
+```shell
+npm install @s-oram/react-show-dialog --save-exact
+```
+
+## Getting Started
 
 Using `react-show-dialog` is a three step process. See
 [react-show-dialog-examples](https://github.com/s-oram/react-show-dialog-examples)
 for a working example.
 
-### 1. Create your dialog component
+### 1. Create a Dialog Component
 
 The dialog component is a typical React component. It must have a
 `onModalResult` property that is called to return the result value.
@@ -30,7 +36,7 @@ export const ConfirmDialog = ({
 }
 ```
 
-### 2. Activate the dialog with the `useShowDialog()` hook
+### 2. Activate the Dialog With the `useShowDialog()` Hook
 
 The `useShowDialog()` hook returns a `showDialog()` function that can be called
 to activate your dialog.
@@ -65,7 +71,7 @@ export const ProjectSettings () => {
 }
 ```
 
-### 3. Add the `<ShowDialogProvider>` component to your application
+### 3. Add the `<ShowDialogProvider>` Component to Your Application
 
 Finally we need to add the `<ShowDialogProvider/>` somewhere in the application
 component tree.
